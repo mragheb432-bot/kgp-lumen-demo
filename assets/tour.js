@@ -53,6 +53,12 @@
       if (hit) focus(hit.t, hit.el); else resetZoom();
     }, true);
     d.addEventListener("submit", (e) => { if (!tour.allow) e.preventDefault(); }, true);
+    // a disabled control receives no click, only pointer events: select it on pointerup, as a click would
+    d.addEventListener("pointerup", (e) => {
+      if (tour.allow || !(e.target.closest && e.target.closest(":disabled"))) return;
+      const hit = match(e.target, e.clientX, e.clientY);
+      if (hit) focus(hit.t, hit.el); else resetZoom();
+    }, true);
     d.addEventListener("keydown", (e) => { if (e.key === "Escape" && tour.cur) whole(); }, true);   // Esc pressed inside the interface
     tour.win.addEventListener("resize", () => tour.cur && setTimeout(() => focus(tour.cur, tour.el, true), 60));
   }
