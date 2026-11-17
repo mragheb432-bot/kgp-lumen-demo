@@ -1,0 +1,4 @@
+/* the project's colours (kgp config.colors) over the engine's palette */
+:root { --brand-a: #f472b6; --brand-b: #a78bfa; }
+:root, [data-theme="dark"] { --tile: #140b1f; --c-brand: #a78bfa; }
+[data-theme="light"] { --tile: #140b1f; }
